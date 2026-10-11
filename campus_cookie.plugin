@@ -1,0 +1,19 @@
+#!name=campus-lite 会话抓取
+#!desc=拦截 *.confong.cn 请求，抠出 cookie2 复制到剪贴板，供 campus-lite「从剪贴板导入」
+#!author=minis
+#!homepage=https://github.com/ssssbbbbg/tmall-mod
+#!icon=https://raw.githubusercontent.com/Loon0x00/LoonExampleConfig/master/icon/cookie.png
+#!system=ios
+
+[MITM]
+hostname = *.confong.cn
+enable = true
+skip-server-cert-verify = true
+
+[Script]
+# 拦 share.confong.cn 页面请求和 acs-m.confong.cn MTOP 网关
+http-request ^https?://[^/]*\.?confong\.cn/ \
+    script-path=https://raw.githubusercontent.com/ssssbbbbg/tmall-mod/main/campus_cookie.js, \
+    tag=抓confong会话, \
+    timeout=30, \
+    enable=true
